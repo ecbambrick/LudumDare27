@@ -27,6 +27,11 @@ secs.rendersystem("render", 100, function()
 	love.graphics.push()
 	love.graphics.scale(2)
 	
+	-- draw map
+	if Map and Map.stage and Map.stage.map then
+		Map.stage.map:draw()
+	end
+	
 	-- draw each type of entity
 	for e in pairs(secs.query("rectangles")) do
 		love.graphics.rectangle(e.rect.style, e.pos.x, e.pos.y, e.pos.w, e.pos.h)
