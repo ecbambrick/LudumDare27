@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="16" tileheight="16">
  <tileset firstgid="1" name="default" tilewidth="16" tileheight="16" spacing="1" margin="1">
-  <image source="tiles.gif" width="103" height="67"/>
+  <image source="tiles.gif" width="103" height="69"/>
  </tileset>
- <layer name="Tile Layer 1" width="16" height="12">
+ <tileset firstgid="25" name="markers" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="tilemarkers.gif" width="69" height="35"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="oneway"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="solid"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="background" width="16" height="12">
   <data encoding="base64" compression="zlib">
    eJxjZGBgYGSAAEYkNrGAEQtNqjmMDNj14TMHWY6Q+4kxF58abHK4ALpfcNlFCOAzA5fbiQ17bP6kBA9lAAB1MABE
   </data>
  </layer>
+ <layer name="solid" width="16" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF6EAKByaklhz9lNo/CigDAIadAiM=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="16" height="12"/>
 </map>
