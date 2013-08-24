@@ -1,6 +1,7 @@
 function love.load()
 
 	secs = require "secs"
+		   require "systems.input"
 		   require "systems.rendering"
 	
 	secs.component("input", {})
