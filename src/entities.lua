@@ -1,3 +1,16 @@
+local newSpatialMap = require "lib.spatialmap"
+
+--[[
+a spatial hash map for organizing physical entities
+--]]
+secs.factory("spatialmap", function(size)
+    return secs.entity(
+        { "spatialhash", {
+            map = newSpatialMap(size)
+        }}
+    )
+end)
+
 --[[
 targets the position component of another entity and takes a set of
 x,y coordinates as boundary limits to the camera's movement
@@ -20,25 +33,86 @@ the map for an area
 room is the name of the map room the game is currently focused on
 load determines whether or not to load the map on the next frame
 --]]
-secs.factory("stage", function(filePath, load)
+secs.factory("stage", function(filePath, bg, load)
     return secs.entity(
         { "stage", { 
             path = filePath,
-            load = load or false
+            load = load or false,
+			background = bg,
         }}
     )
 end)
 
 --[[
+group
+--]]
+secs.factory("group", function(...)
+	local e = secs.entity({ "group" })
+	for i,v in ipairs(arg) do
+		table.insert(e.group, v)
+	end
+	return e
+end)
+
+
+--[[
 the player
 --]]
-secs.factory("player", function(x, y)
+secs.factory("player", function(x, y, class)
+	local sprite
+	if class == "fighter" then sprite = Sprites.fighter
+	elseif class == "theif" then sprite = Sprites.theif
+	elseif class == "wizard" then sprite = Sprites.wizard
+	end
 	return secs.entity(
-		{ "pos", { x = 10, y = 10, w = 16, h = 16 }},
-		{ "hitboxes", {{ type = "active", width = 16, height = 16, offsetX = 0, offsetY = 0 }}},
+		{ "class", { class = class }},
+		{ "pos", { x = x, y = y, w = sprite.w, h = sprite.h }},
+		{ "vel", { maxY = 360, maxX = 80 }},
+		{ "hitboxes", {{ type = "active", width = sprite.w, height = 16, offsetX = 0, offsetY = sprite.h - 16 }}},
+		{ "sprite", { sprite = sprite }},
 		{ "physics" },
-		{ "input" },
-		{ "rect" },
+		{ "input" }
+	)
+end)
+
+--[[
+a crate
+--]]
+secs.factory("crate", function(x, y)
+	return secs.entity(
+		{ "pos", { x = x, y = y, w = 16, h = 16 }},
+		{ "vel", { maxY = 350 }},
+		{ "hitboxes", {{ type = "active", width = 16, height = 16, offsetX = 0, offsetY = 0 }}},
+		{ "sprite", { sprite = Sprites.crate }},
+		{ "physics" },
+		{ "crate" }
+	)
+end)
+
+--[[
+a grave
+--]]
+secs.factory("grave", function(x, y)
+	return secs.entity(
+		{ "pos", { x = x, y = y, w = 16, h = 16 }},
+		{ "vel", { y = -200 }},
+		{ "hitboxes", {{ type = "active", width = 16, height = 16, offsetX = 0, offsetY = 0 }}},
+		{ "sprite", { sprite = Sprites.grave }},
+		{ "physics" }
+	)
+end)
+
+
+--[[
+treasure
+--]]
+secs.factory("treasure", function(x, y)
+	return secs.entity(
+		{ "pos", { x = x, y = y, w = 16, h = 16 }},
+		{ "hitboxes", {{ type = "active", width = 16, height = 16, offsetX = 0, offsetY = 0 }}},
+		{ "sprite", { sprite = Sprites.treasure }},
+		{ "treasure" },
+		{ "physics" },
 		{ "vel" }
 	)
 end)

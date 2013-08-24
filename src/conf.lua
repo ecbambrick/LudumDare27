@@ -21,25 +21,7 @@
 
 --]]----------------------------------------------------------------------------
 
-secs.updatesystem("playerInput", 100, function(dt)
-
-	-- player input
-	for e in pairs(secs.query("controllable")) do
-		if love.keyboard.isDown("up") then
-			if e.physics and e.physics.onGround then
-				e.vel.y = -1000
-			end
-		elseif e.vel.y < -50 then
-			e.vel.y = -50
-		end
-		if love.keyboard.isDown("left")  then e.vel.x = -1000 e.pos.dx = -1 end
-		if love.keyboard.isDown("right") then e.vel.x = 1000  e.pos.dx =  1 end
-	
-	end
-	
-	-- system input
-	if  love.keyboard.isDown("escape") then
-		love.event.quit()
-	end
-	
-end)
+function love.conf(t)
+    t.screen.width = 256*2
+    t.screen.height = 192*2
+end

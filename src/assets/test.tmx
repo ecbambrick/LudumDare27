@@ -16,15 +16,23 @@
    </properties>
   </tile>
  </tileset>
+ <layer name="backgroun2" width="16" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAfCFOgdzABYYbh4xdqAWEi8UADSt0EADZTAVc=
+  </data>
+ </layer>
  <layer name="background" width="16" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjZGBgYGSAAEYkNrGAEQtNqjmMDNj14TMHWY6Q+4kxF58abHK4ALpfcNlFCOAzA5fbiQ17bP6kBA9lAAB1MABE
+   eJydUgEKwCAIvNZgFQiD/v/XMUgQs7KEQ8EOzzMCkBpyywV9PKLPb6nhNFZ8b/8yEI36HvCTA/++2hcSeCc6V/pPPZzNDrD9iKIezQ7ofckiy3+g+cytTuj77XCr0sc32uF/d0MFLw==
   </data>
  </layer>
- <layer name="solid" width="16" height="12">
+ <layer name="solid" width="16" height="12" visible="0" opacity="0.2">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF6EAKByaklhz9lNo/CigDAIadAiM=
+   eJyTYmBgkELDuAC6OkLqCQFi7SNXnlj7ScG49FNqPyX6yQX49JMbJqTqxRem9MAA8dYJPw==
   </data>
  </layer>
- <objectgroup name="objects" width="16" height="12"/>
+ <objectgroup name="entities" width="16" height="12">
+  <object name="treasure" x="32" y="160" width="16" height="16"/>
+  <object name="crate" x="144" y="48" width="16" height="16"/>
+ </objectgroup>
 </map>

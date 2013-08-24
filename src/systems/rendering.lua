@@ -21,23 +21,51 @@
 
 --]]----------------------------------------------------------------------------
 
+local drawBackground, drawMap
+
 secs.rendersystem("render", 100, function()
 
 	-- set camera
 	love.graphics.push()
-	love.graphics.scale(2)
+	love.graphics.scale(WINDOW_SCALE)
 	
-	-- draw map
-	if Map and Map.stage and Map.stage.map then
-		Map.stage.map:draw()
+	local spriteEntities = {}
+	for e in pairs(secs.query("sprites")) do
+		table.insert(spriteEntities, e)
 	end
+	table.sort(spriteEntities, function(a,b) return a.pos.z < b.pos.z end)
 	
-	-- draw each type of entity
-	for e in pairs(secs.query("rectangles")) do
-		love.graphics.rectangle(e.rect.style, e.pos.x, e.pos.y, e.pos.w, e.pos.h)
+	drawBackground(Map)
+	for i,e in ipairs(spriteEntities) do
+		if e.color then love.graphics.setColor(e.color.rgb) end
+		e.sprite.sprite:draw(e.pos.x, e.pos.y, e.pos.dx)
+		if e.color then love.graphics.setColor(255,255,255,255) end
+	end
+	drawMap(Map)
+	if Group then
+		local x, y = WINDOW_WIDTH - 20 * #Group.group, WINDOW_HEIGHT - 24
+		for i, class in ipairs(Group.group) do
+			if class == "fighter" then Sprites.fighter:draw(x+20*(i-1)+4, y) end
+			if class == "theif"   then Sprites.theif:draw(x+20*(i-1)+4, y)   end
+			if class == "wizard"  then Sprites.wizard:draw(x+20*(i-1)+4, y)  end
+		end
 	end
 	
 	-- unset camera
 	love.graphics.pop()
 	
 end)
+
+function drawBackground(map)
+	if map and map.stage and map.stage.map then
+		if map.stage.background then
+			love.graphics.draw(map.stage.background)
+		end
+	end
+end
+
+function drawMap(map)
+	if map and map.stage and map.stage.map then
+		map.stage.map:draw()
+	end
+end

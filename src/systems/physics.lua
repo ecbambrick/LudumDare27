@@ -2,7 +2,7 @@
 --]]----------------------------------------------------------------------------
 
 -- helper functions
-local applyGravity, updatePositionX, updatePositionY
+local applyFriction, applyGravity, updatePositionX, updatePositionY
 local preventHorizontalCollisions, preventVerticalCollisions
 local resolveCollisionLeft, resolveCollisionRight
 local resolveCollisionDown, resolveCollisionUp
@@ -22,7 +22,12 @@ secs.updatesystem("physics", 300, function(dt)
 	-- apply physical forces and prevent solid tile collisions
 	for e in pairs(secs.query("physical")) do
 		
+		-- clamp velocity
+		e.vel.x = math.clamp(e.vel.x, e.vel.maxX)
+		e.vel.y = math.clamp(e.vel.y, e.vel.maxY)
+		
 		-- x direction
+		applyFriction(e, dt)
 		preventHorizontalCollisions(e, map, dt)
 		updatePositionX(e, dt)
 		updateHitboxes(e)
@@ -38,6 +43,13 @@ secs.updatesystem("physics", 300, function(dt)
 end)
 
 --------------------------------------------------------------- PHYSICAL FORCES 
+
+function applyFriction(e, dt)
+	if e.physics and e.physics.pushing then
+		e.vel.x = e.vel.x / 4
+		e.physics.pushing = false
+	end
+end
 
 function applyGravity(e, dt)
 	if e.physics and e.physics.gravity ~= 0 then
@@ -170,12 +182,12 @@ function updateHitboxCoordinates(e, hitbox)
 	if e.pos.dx >= 0 then
 		hitbox.x1 = e.pos.x + hitbox.offsetX
 	else
-		hitbox.x1 = e.pos.x - hitbox.offsetX - hitbox.width + e.pos.width
+		hitbox.x1 = e.pos.x - hitbox.offsetX - hitbox.width + e.pos.w
 	end
 	if e.pos.dy >= 0 then
 		hitbox.y1 = e.pos.y + hitbox.offsetY
 	else
-		hitbox.y1 = e.pos.y - hitbox.offsetY - hitbox.height + e.pos.height
+		hitbox.y1 = e.pos.y - hitbox.offsetY - hitbox.height + e.pos.h
 	end
 	hitbox.x2 = hitbox.x1 + hitbox.width
 	hitbox.y2 = hitbox.y1 + hitbox.height

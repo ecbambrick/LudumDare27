@@ -34,6 +34,7 @@ secs.updatesystem("tiledmap", 50, function(dt)
 	end
 	if e.stage.load and not e.stage.map then
 		loadTiledMap(e.stage)
+		loadEntities(e.stage)
 	end
 end)
 
@@ -62,9 +63,10 @@ end
 ------------------------------------------------------------- ENTITY MANAGEMENT
 
 -- create an entity for each entity-layer object in the map
-function loadEntities(room, stage)
+function loadEntities(stage)
 	for i,entity in ipairs(stage.map("entities").objects) do
-		-- ...
+		local e = secs.entity[entity.name](entity.x, entity.y)
+		secs.attach(e, "actor")		
 	end
 end
 
