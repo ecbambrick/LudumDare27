@@ -1,8 +1,11 @@
 function love.load()
 
+	require "lib.math"
+
 	secs = require "lib.secs"
 		   require "systems.tiledmap"
 		   require "systems.input"
+		   require "systems.physics"
 		   require "systems.rendering"
 		   require "components"
 		   require "entities"

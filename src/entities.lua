@@ -35,7 +35,8 @@ the player
 secs.factory("player", function(x, y)
 	return secs.entity(
 		{ "pos", { x = 10, y = 10, w = 16, h = 16 }},
-		{ "physical" },
+		{ "hitboxes", {{ type = "active", width = 16, height = 16, offsetX = 0, offsetY = 0 }}},
+		{ "physics" },
 		{ "input" },
 		{ "rect" },
 		{ "vel" }

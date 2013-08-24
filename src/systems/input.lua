@@ -26,8 +26,13 @@ secs.updatesystem("playerInput", 100, function(dt)
 	-- player input
 	for e in pairs(secs.query("controllable")) do
 	
-		if love.keyboard.isDown("left")  then e.vel.x = -100*dt end
-		if love.keyboard.isDown("right") then e.vel.x = 100*dt  end
+		if love.keyboard.isDown("up") then
+			if e.physics and e.physics.onGround then
+				e.vel.y = -300
+			end
+		end
+		if love.keyboard.isDown("left")  then e.vel.x = -1000 end
+		if love.keyboard.isDown("right") then e.vel.x = 1000  end
 	
 	end
 	
