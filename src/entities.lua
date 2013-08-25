@@ -169,3 +169,10 @@ end)
 secs.factory("title", function()
 	return secs.entity({ "title" })
 end)
+
+secs.factory("image", function(image, x, y)
+	return secs.entity(
+		{ "pos", { x = x, y = y }},
+		{ "image", { image = image }}
+	)
+end)

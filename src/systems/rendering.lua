@@ -67,6 +67,9 @@ secs.rendersystem("render", 100, function()
 		end
 		love.graphics.setColor(255,255,255,255)
 	end
+	for e in pairs(secs.query("images")) do
+		love.graphics.draw(e.image.image, e.pos.x, e.pos.y)
+	end
 	
 	love.graphics.pop()
 	

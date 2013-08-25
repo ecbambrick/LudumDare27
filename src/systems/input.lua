@@ -21,7 +21,38 @@
 
 --]]----------------------------------------------------------------------------
 
-secs.updatesystem("playerInput", 100, function(dt)
+titlecount = 0.5
+secs.updatesystem("playerInput", 25, function(dt)
+
+	-- title input
+	titlecount = titlecount + dt
+	if titlecount > 0.2 then titlecount = 0.2 end
+	for e in pairs(secs.query("titles")) do
+		if love.keyboard.isDown("return") and titlecount == 0.2 then
+			titlecount = 0
+			local size = 0
+			for f in pairs(secs.query("images")) do
+				size = size + 1
+			end
+			for f in pairs(secs.query("images")) do
+				if size == 2 and f.image.image == Images.title then
+					secs.delete(f)
+					break
+				elseif size == 1 and f.image.image == Images.instructions then
+					secs.delete(f)
+					size = 0
+				end
+			end
+			if size == 0 then 
+				Space = secs.entity.spatialmap(64)
+				Map = secs.entity.stage("assets/stage0.tmx", {1}, true)
+				Group = secs.entity.group(unpack(Map.stage.default))
+				Selector = secs.entity.selector(Group.group, 1)
+				Selector.selector.count = 0.2
+				secs.delete(e)
+			end
+		end
+	end
 
 	-- player input
 	for e in pairs(secs.query("controllable")) do
@@ -44,7 +75,7 @@ secs.updatesystem("playerInput", 100, function(dt)
 	end
 	
 	-- selector input
-	if Selector and Group then
+	if Selector and Group and Map and Map.stage and Map.stage.map then
 		local e = Selector
 		e.selector.count = e.selector.count - dt
 		if e.selector.count <= 0 then

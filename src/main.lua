@@ -33,6 +33,9 @@ function love.load()
 		objects = love.graphics.newImage("assets/objects.gif"),
 		tiles = love.graphics.newImage("assets/tiles.gif"),
 		characters = love.graphics.newImage("assets/characters.gif"),
+		title = love.graphics.newImage("assets/title.png"),
+		descriptions = love.graphics.newImage("assets/descriptions.png"),
+		instructions = love.graphics.newImage("assets/instructions.png"),
 	}
 	Sprites = {
 		switch = newSprite(Images.objects, 32, 32, 16, 16),
@@ -46,21 +49,18 @@ function love.load()
 		someguy = newSprite(Images.characters, 0, 0, 15, 19),
 		fighter = newSprite(Images.characters, 0, 0, 15, 19),
 		theif = newSprite(Images.characters, 15, 0, 15, 19),
-		wizard = newSprite(Images.characters, 30, 0, 15, 19),
+		wizard = newSprite(Images.characters, 45, 0, 15, 19),
 	}
 	Classes = { "fighter", "wizard", "theif" }
-	Music = love.audio.newSource("assets/music.mid")
+	Music = love.audio.newSource("assets/music.ogg")
 	
     Music:setLooping(true)
     Music:setVolume(0.5)
     love.audio.play(Music)
 	
 	secs.entity.title()
-	
-	-- Space = secs.entity.spatialmap(64)
-	-- Map = secs.entity.stage("assets/title.tmx", {1,1,1,1}, true)
-	-- Group = secs.entity.group(unpack(Map.stage.default))
-	-- Selector = secs.entity.selector(Group.group, 1)
+	secs.entity.image(Images.instructions, 0, 0)
+	secs.entity.image(Images.title, 0, 0)
 	
 end
 

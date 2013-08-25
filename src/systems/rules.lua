@@ -30,11 +30,24 @@ secs.updatesystem("playerInput", 500, function(dt)
 			local current, new = Map.stage.path
 			if current == "assets/stage1.tmx" then new = { "assets/stage2.tmx", {1,1,1} } end
 			if current == "assets/stage0.tmx" then new = { "assets/stage2.tmx", {1,1,1} } end
+			if current == "assets/stage2.tmx" then new = { "assets/stage3.tmx", {1,1,1} } end
+			if current == "assets/stage3.tmx" then new = { "assets/stage4.tmx", {1,1,1} } end
 			secs.delete(Map)
 			for e in pairs(secs.query("actors")) do
 				secs.delete(e)
 			end
-			Map = secs.entity.stage(new[1], new[2], true)
+			if current == "assets/stage4.tmx" then
+				secs.delete(Timer)
+				secs.delete(Player)
+				Map = nil
+				Timer = nil
+				Player = nil
+				secs.entity.title()
+				secs.entity.image(Images.instructions, 0, 0)
+				secs.entity.image(Images.title, 0, 0)
+			else
+				Map = secs.entity.stage(new[1], new[2], true)
+			end
 		end)
 	end
 	if Timer and Timer.active then
