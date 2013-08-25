@@ -21,15 +21,33 @@
 
 --]]----------------------------------------------------------------------------
 
-local resetPlayer, resetStage, nextStage
+local resetPlayer, gameOver, nextStage, empty, fadeOut
 
 secs.updatesystem("playerInput", 500, function(dt)
-	Timer = Timer - dt
-	if Timer < 0 then
-		Timer = 10.99
-		local livesRemaining = resetPlayer(Player, Group.group)
-		if livesRemaining < 0 and Player.pos then
-			secs.detach(Player, "pos")
+	if Timer and Player and Player.pos and Player.pos.y + Player.pos.h < 0
+	and empty(secs.query("treasure")) then
+		fadeOut(function()
+			local current, new = Map.stage.path
+			if current == "assets/stage1.tmx" then new = { "assets/stage2.tmx", {1,1,1} } end
+			if current == "assets/stage0.tmx" then new = { "assets/stage2.tmx", {1,1,1} } end
+			secs.delete(Map)
+			for e in pairs(secs.query("actors")) do
+				secs.delete(e)
+			end
+			Map = secs.entity.stage(new[1], new[2], true)
+		end)
+	end
+	if Timer and Timer.active then
+		Timer.count = Timer.count - dt
+		if Timer.count < 0 then
+			Timer.count = 9.99
+			local livesRemaining = resetPlayer(Player, Group.group)
+			if livesRemaining < 0 and Player.pos then
+				fadeOut(function()
+					Map.stage.unload = true
+					Map.stage.load = true
+				end)
+			end
 		end
 	end
 end)
@@ -41,19 +59,24 @@ function resetPlayer(player, group)
 	secs.entity.grave(player.pos.x, player.pos.y)
 	if player.rich then
 		local t = secs.entity.treasure(player.pos.x, player.pos.y - 16 + player.pos.h)
+		secs.attach(t, "actor")
 		t.pos.z = 10
 	end
 	if #group > 0 then
 		local class = table.remove(group, 1)
 		player.pos.y = 16*-2
 		player.pos.x = 16*7.5
-		player.sprite.sprite = Sprites[class]
-		player.class.type = class
+		player.sprite.sprite = Sprites[class[2]]
+		player.class.class = class
+		if player.class.class[2] == "theif" then player.vel.maxX = 150
+		else player.vel.maxX = 80 end
 		coroutine.resume(coroutine.create(function(e,vel)
+			Timer.active = false
 			vel = secs.detach(player, "vel")[1]
 			wait(1)
+			Timer.active = true
 			secs.attach(e, "vel", vel)
-			Timer = 9.999
+			Timer.count = 9.999
 		end), player, vel)
 		return #group
 	else
@@ -61,6 +84,48 @@ function resetPlayer(player, group)
 	end
 end
 
-function resetStage() end
+function fadeOut(callback)
+	Timer.active = false
+	Timer.count = 0
+	secs.delete(Player)
+	coroutine.resume(coroutine.create(function()
+		local e = secs.entity(
+			{ "pos", { x = 0, y = 0, w = WINDOW_WIDTH, h = WINDOW_HEIGHT }},
+			{ "color", { rgb = { 0,0,0,0 }}},
+			{ "rect", {}}
+		)
+		local count, limit = 1, 60
+		while count < limit do
+			count = count + 1
+			e.color.rgb[4] = e.color.rgb[4] + 255/limit
+			wait(1/limit)
+		end
+		e.color.rgb[4] = 255
+		secs.delete(Player)
+		secs.delete(Group)
+		secs.delete(Camera)
+		callback()
+		Group = nil
+		Player = nil
+		Timer = nil
+		Camera = nil
+		count, limit = 0, 30
+		while count < limit do
+			count = count + 1
+			e.color.rgb[4] = e.color.rgb[4] - 128/limit
+			wait(1/limit)
+		end
+		secs.delete(e)
+		Camera = secs.entity.camera()
+		Group = secs.entity.group(unpack(Map.stage.default))
+		Selector = secs.entity.selector(Group.group, 2)
+	end))
+end
 
-function nextStage() end
+function empty(t)
+	local i = 0
+	for v in pairs(t) do
+		i = i + 1
+	end
+	if i == 0 then return true else return false end
+end

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="12" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="default" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="tiles.gif" width="103" height="69"/>
+ </tileset>
+ <tileset firstgid="25" name="markers" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="tilemarkers.gif" width="69" height="35"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="oneway"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="solid"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="backgroun2" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF9ALCA+0ACsFQd/9QAbQM58EWhwCHbABN
+  </data>
+ </layer>
+ <layer name="background" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eJy1U1sKgDAM66bgAwqC97+rDhYoMVOGGgidTZuPLbqZzSeXUFe7YhJzpXqjv1TNhddXePJPJ8cOP5598i93ou4q7sczz8I/BwID9XPtjbQPrZx38oB/fBcA3/yGq9hnsv4GHuomtD/yU3KBO+v1x+4d8K/0+iex41SNNM7PHZERzk1u+MT8RKreXL1BpSufA5pvBLo=
+  </data>
+ </layer>
+ <layer name="solid" width="24" height="12" visible="0" opacity="0.2">
+  <data encoding="base64" compression="zlib">
+   eJyTYmBgkMKC0QE2NcRiWoGBNp8YeXxqKXU/seZjiwti4otYeUqAFBqNzf20ArQyn5L0jy2MGRioEz644pCQ+bTEAIlDCkM=
+  </data>
+ </layer>
+ <objectgroup name="entities" width="24" height="12">
+  <object type="crate" x="192" y="64" width="16" height="16"/>
+  <object type="treasure" x="32" y="160" width="16" height="16"/>
+  <object type="switch" x="320" y="128" width="16" height="16"/>
+  <object type="inactivewall" x="48" y="128" width="16" height="16"/>
+  <object type="inactivewall" x="64" y="128" width="16" height="16"/>
+  <object type="activewall" x="64" y="80" width="16" height="16"/>
+  <object type="activewall" x="80" y="80" width="16" height="16"/>
+ </objectgroup>
+</map>

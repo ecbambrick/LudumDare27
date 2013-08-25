@@ -29,12 +29,14 @@ Load and unload tiled maps with AdvancedTiledLoader
 --]]
 secs.updatesystem("tiledmap", 50, function(dt)
 	local e = Map
-	if e.stage.unload and e.stage.map then
-		unloadTiledMap(e.stage)
-	end
-	if e.stage.load and not e.stage.map then
-		loadTiledMap(e.stage)
-		loadEntities(e.stage)
+	if e then
+		if e.stage.unload and e.stage.map then
+			unloadTiledMap(e.stage)
+		end
+		if e.stage.load and not e.stage.map then
+			loadTiledMap(e.stage)
+			loadEntities(e.stage)
+		end
 	end
 end)
 
@@ -48,8 +50,8 @@ function loadTiledMap(stage)
 	
 	local camera = Camera
 	if camera then
-		camera.camera.x2 = stage.map.width
-		camera.camera.y2 = stage.map.height
+		camera.camera.x2 = stage.map.width * stage.map.tileWidth
+		camera.camera.y2 = stage.map.height * stage.map.tileHeight
 	end
 end
 
@@ -65,8 +67,10 @@ end
 -- create an entity for each entity-layer object in the map
 function loadEntities(stage)
 	for i,entity in ipairs(stage.map("entities").objects) do
-		local e = secs.entity[entity.name](entity.x, entity.y)
-		secs.attach(e, "actor")		
+		if entity.type then
+			local e = secs.entity[entity.type](entity.x, entity.y)
+			secs.attach(e, "actor")
+		end
 	end
 end
 

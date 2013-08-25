@@ -12,7 +12,10 @@ local resolveCollisionDown, resolveCollisionUp
 secs.updatesystem("physics", 300, function(dt)
 	
 	-- load current map
-	local map = Map.stage.map
+	local map
+	if Map and Map.stage then
+		map = Map.stage.map
+	end
 	
 	-- update hitboxes
 	for e in pairs(secs.query("collidable")) do
@@ -64,7 +67,7 @@ end
 function updatePositionX(e, dt)
     e.vel.x = math.clamp(e.vel.x, e.vel.maxX)
     e.pos.x = e.pos.x + e.vel.x * dt
-	e.vel.x = 0
+	if e.physics and e.physics.friction then e.vel.x = 0 end
 end
 
 function updatePositionY(e, dt)
@@ -76,7 +79,7 @@ end
 
 function preventVerticalCollisions(e, map, dt)
 	local hitbox = getPushbox(e)
-	if hitbox then
+	if hitbox and map then
 		if e.vel.y < 0 then resolveCollisionUp(e, hitbox, map, dt)    end
 		if e.vel.y > 0 then resolveCollisionDown(e, hitbox, map, dt)  end
 	end
@@ -84,7 +87,7 @@ end
 
 function preventHorizontalCollisions(e, map, dt)
 	local hitbox = getPushbox(e)
-	if hitbox then
+	if hitbox and map then
 		if e.vel.x < 0 then resolveCollisionLeft(e, hitbox, map, dt)  end
 		if e.vel.x > 0 then resolveCollisionRight(e, hitbox, map, dt) end
 	end

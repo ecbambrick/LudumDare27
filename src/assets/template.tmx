@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="24" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="default" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="tiles.gif" width="103" height="69"/>
+ </tileset>
+ <tileset firstgid="25" name="markers" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="tilemarkers.gif" width="69" height="35"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="oneway"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="solid"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="backgroun2" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <layer name="background" width="24" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <layer name="solid" width="24" height="24" opacity="0.2">
+  <data encoding="base64" compression="zlib">
+   eJyTYmBgkMKC0QE2NcRiWoGBNp9S+wfa/aPmj5o/av6o+aPmj5o/mM2nJQYAIaAJJQ==
+  </data>
+ </layer>
+ <objectgroup name="entities" width="24" height="24">
+  <object type="crate" x="336" y="32" width="16" height="16"/>
+  <object type="treasure" x="336" y="64" width="16" height="16"/>
+  <object type="switch" x="336" y="96" width="16" height="16"/>
+  <object type="inactivewall" x="336" y="128" width="16" height="16"/>
+ </objectgroup>
+</map>

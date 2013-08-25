@@ -17,6 +17,7 @@ function love.load()
 		   require "systems.physics"
 		   require "systems.collision"
 		   require "systems.rules"
+		   require "systems.camera"
 		   require "systems.rendering"
 		   require "components"
 		   require "entities"
@@ -30,10 +31,13 @@ function love.load()
 	Images = {
 		background1 = love.graphics.newImage("assets/bg1.png"),
 		objects = love.graphics.newImage("assets/objects.gif"),
+		tiles = love.graphics.newImage("assets/tiles.gif"),
 		characters = love.graphics.newImage("assets/characters.gif"),
-		particle = love.graphics.newImage("assets/particle.gif"),
 	}
 	Sprites = {
+		switch = newSprite(Images.objects, 32, 32, 16, 16),
+		projectile = newSprite(Images.objects, 16, 32, 16, 16),
+		wall = newSprite(Images.objects, 0, 32, 16, 16),
 		crate = newSprite(Images.objects, 0, 0, 16, 16),
 		treasure = newSprite(Images.objects, 16, 0, 16, 16),
 		treasureActive = newSprite(Images.objects, 32, 16, 16, 16),
@@ -44,12 +48,19 @@ function love.load()
 		theif = newSprite(Images.characters, 15, 0, 15, 19),
 		wizard = newSprite(Images.characters, 30, 0, 15, 19),
 	}
+	Classes = { "fighter", "wizard", "theif" }
+	Music = love.audio.newSource("assets/music.mid")
 	
-	Timer = 10
-	Group = secs.entity.group("fighter", "wizard", "theif")
-	Player = secs.entity.player(16*7.5, 16*-1, table.remove(Group.group, 1))
-	Space = secs.entity.spatialmap(64)
-	Map = secs.entity.stage("assets/test.tmx", Images.background1, true)
+    Music:setLooping(true)
+    Music:setVolume(0.5)
+    love.audio.play(Music)
+	
+	secs.entity.title()
+	
+	-- Space = secs.entity.spatialmap(64)
+	-- Map = secs.entity.stage("assets/title.tmx", {1,1,1,1}, true)
+	-- Group = secs.entity.group(unpack(Map.stage.default))
+	-- Selector = secs.entity.selector(Group.group, 1)
 	
 end
 
@@ -69,6 +80,4 @@ end
 
 function love.draw()
 	secs.draw()
-	local width = Timer >= 10 and 40 or 16
-	love.graphics.print(math.floor(Timer), WINDOW_WIDTH - width, 0)
 end

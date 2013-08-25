@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="24" height="14" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="default" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="tiles.gif" width="103" height="69"/>
+ </tileset>
+ <tileset firstgid="25" name="markers" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="tilemarkers.gif" width="69" height="35"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="oneway"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="solid"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="backgroun2" width="24" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFAw2EoXgUjIJRQH0gTCMMAgDkgAHJ
+  </data>
+ </layer>
+ <layer name="background" width="24" height="14">
+  <data encoding="base64" compression="zlib">
+   eJzNk+EKgCAMhKcGWbD3f90MCsa5OV1/OvgQdB56TiaiA2DqtTeqUjuCDS9tLqKRfwZKY1Nq84R/hr3WfU/Dw/OvTl1UDMgsRpl4Ss9+ef63N3DUMvH09pr1vqhodrP+UWHuqxTq3yiJNcx/Fa1v5T//ez4eX/PxuL0vXuwE3Q==
+  </data>
+ </layer>
+ <layer name="solid" width="24" height="14" visible="0" opacity="0.2">
+  <data encoding="base64" compression="zlib">
+   eJyTYmBgkMKC0QE2NcRibGZRAwyk+dTwKyG9lAJ6m09smJBqLjHqyQG0Chd6m08NjM9MWruf1ubTEgMArvQLew==
+  </data>
+ </layer>
+ <objectgroup name="entities" width="24" height="14">
+  <object type="treasure" x="32" y="48" width="16" height="16"/>
+  <object type="activewall" x="304" y="160" width="16" height="16"/>
+  <object type="crate" x="270" y="32" width="16" height="16"/>
+  <object type="inactivewall" x="192" y="48" width="16" height="16"/>
+  <object type="inactivewall" x="208" y="48" width="16" height="16"/>
+  <object type="inactivewall" x="224" y="48" width="16" height="16"/>
+  <object type="inactivewall" x="240" y="48" width="16" height="16"/>
+  <object type="activewall" x="288" y="160" width="16" height="16"/>
+  <object type="switch" x="16" y="128" width="16" height="16"/>
+  <object type="treasure" x="176" y="192" width="16" height="16"/>
+  <object type="inactivewall" x="256" y="32" width="16" height="16"/>
+  <object type="activewall" x="176" y="80" width="16" height="16"/>
+  <object type="activewall" x="192" y="80" width="16" height="16"/>
+  <object type="activewall" x="176" y="144" width="16" height="16"/>
+ </objectgroup>
+</map>
