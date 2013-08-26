@@ -43,7 +43,8 @@ secs.updatesystem("playerInput", 25, function(dt)
 					size = 0
 				end
 			end
-			if size == 0 then 
+			if size == 0 then
+				Camera = secs.entity.camera()
 				Space = secs.entity.spatialmap(64)
 				Map = secs.entity.stage("assets/stage0.tmx", {1}, true)
 				Group = secs.entity.group(unpack(Map.stage.default))
@@ -80,6 +81,18 @@ secs.updatesystem("playerInput", 25, function(dt)
 		e.selector.count = e.selector.count - dt
 		if e.selector.count <= 0 then
 			if e.selector.count <= 0 then e.selector.count = 0 end
+			if love.keyboard.isDown("a") and Camera then
+				Camera.pos.x = Camera.pos.x - 64*dt
+			end
+			if love.keyboard.isDown("d") and Camera then
+				Camera.pos.x = Camera.pos.x + 64*dt
+			end
+			if love.keyboard.isDown("w") and Camera then
+				Camera.pos.y = Camera.pos.y - 64*dt
+			end
+			if love.keyboard.isDown("s") and Camera then
+				Camera.pos.y = Camera.pos.y + 64*dt
+			end
 			if love.keyboard.isDown("left") then
 				e.selector.index = e.selector.index == 1 and #Group.group or e.selector.index - 1
 				e.selector.count = e.selector.limit

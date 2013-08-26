@@ -130,6 +130,8 @@ function fadeOut(callback)
 		end
 		secs.delete(e)
 		Camera = secs.entity.camera()
+		Camera.camera.x2 = Map.stage.map.tileWidth * Map.stage.map.width
+		Camera.camera.y2 = Map.stage.map.tileHeight * Map.stage.map.height
 		Group = secs.entity.group(unpack(Map.stage.default))
 		Selector = secs.entity.selector(Group.group, 2)
 	end))
