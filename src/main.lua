@@ -1,4 +1,4 @@
-WINDOW_SCALE = 2
+WINDOW_SCALE = 3
 WINDOW_WIDTH = love.graphics.getWidth() / WINDOW_SCALE
 WINDOW_HEIGHT = love.graphics.getHeight() / WINDOW_SCALE
 

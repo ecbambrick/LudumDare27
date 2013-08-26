@@ -79,7 +79,7 @@ secs.rendersystem("render", 100, function()
 	
 	-- draw timer
 	if Timer then
-		love.graphics.print(math.floor(Timer.count), WINDOW_WIDTH - 16, 0)
+		love.graphics.print(math.floor(Timer.count), WINDOW_WIDTH*WINDOW_SCALE/2 - 16, 0)
 	end
 	for e in pairs(secs.query("rectangles")) do
 		love.graphics.setColor(e.color.rgb)

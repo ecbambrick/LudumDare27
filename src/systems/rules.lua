@@ -103,7 +103,7 @@ function fadeOut(callback)
 	secs.delete(Player)
 	coroutine.resume(coroutine.create(function()
 		local e = secs.entity(
-			{ "pos", { x = 0, y = 0, w = WINDOW_WIDTH, h = WINDOW_HEIGHT }},
+			{ "pos", { x = 0, y = 0, w = WINDOW_WIDTH*WINDOW_SCALE, h = WINDOW_HEIGHT*WINDOW_SCALE }},
 			{ "color", { rgb = { 0,0,0,0 }}},
 			{ "rect", {}}
 		)
