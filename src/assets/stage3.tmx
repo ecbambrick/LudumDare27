@@ -23,12 +23,12 @@
  </layer>
  <layer name="background" width="24" height="24">
   <data encoding="base64" compression="zlib">
-   eJztVVsKgDAM66bgA3b/6+pgQ62tkbWIgoF82QRMsy0R0cg40xmDMKdxKkyFLQgrY6EG5J89eqC90qPvORMpKy9/K6p/ZOzomEsQZpBm/3/a/iu0niSm4Vla80FaT38pQ09/6fw91R8L7nSoFbx7vEN/fzZ8sT/oXvLuD2edsfh7zLzdH70dlt2hHSEiLHDjBf8=
+   eJzVVe0KgCAQOy3oA3z/1y1Bwa6zmXdEDvar26Dd1EBEK+NOdyzCXI1bYkjsgTvpE2tA/tFjBtonPfoeM5GysvLXIvt7xomuuThhBmnK/6vtP6PWk8A0PEttPkhr6V9mGKht/2/8pfP3VX80aOlQL3j3eIdG7Q/vkYX/iP1B95J1fzjzjMbfYubv/ujt0OwO7QgR4QDtfwYV
   </data>
  </layer>
  <layer name="solid" width="24" height="24" visible="0" opacity="0.2">
   <data encoding="base64" compression="zlib">
-   eJyTYmBgkMKC0QE2NcRiWgFKzCfGfZTIU8N8SgEtzScl3slNK5S6n5DeoWT+UMtf9DCf2HRHifnE2D8UzB9NP7j106r+GjWfcrNpjQGakRH7
+   eJyTYmBgkMKC0QE2NcRiWgFKzCfGfZTIU8N8SgEtzScl3slNK5S6n5BeWplPrfRPbBjSCgx284lNd5SYT4z9Q8H80fSDWz+t6q9R8yk3m9YYAMEoEi8=
   </data>
  </layer>
  <objectgroup name="entities" width="24" height="24">
