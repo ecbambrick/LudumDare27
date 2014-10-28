@@ -3,6 +3,8 @@
 A simple platformer game that was created for the Ludum Dare game jam. 
 Requires LÖVE 8.0 to run (https://love2d.org/).
 
+![screenshot](https://cloud.githubusercontent.com/assets/2266175/4802811/2997c87c-5e4c-11e4-8e07-8702d90ea2b1.png)
+
 Controls
 --------------------------------------------------------------------------------
 
