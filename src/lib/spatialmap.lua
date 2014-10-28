@@ -1,13 +1,3 @@
---[[----------------------------------------------------------------------------
-
-https://github.com/vrld/HardonCollider/blob/master/spatialhash.lua
-http://www.gamedev.net/page/resources/_/technical/game-programming/spatial-hashing-r2697
-http://conkerjo.wordpress.com/2009/06/13/spatial-hashing-implementation-for-fast-2d-collisions/
-
-update for weak table junk
-
---]]----------------------------------------------------------------------------
-
 local tablesize = function(t)
 	local size = 0
 	for i in pairs(t) do

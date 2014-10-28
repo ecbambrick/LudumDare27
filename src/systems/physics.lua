@@ -1,7 +1,3 @@
---[[----------------------------------------------------------------------------
---]]----------------------------------------------------------------------------
-
--- helper functions
 local applyFriction, applyGravity, updatePositionX, updatePositionY
 local preventHorizontalCollisions, preventVerticalCollisions
 local resolveCollisionLeft, resolveCollisionRight
