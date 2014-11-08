@@ -49,5 +49,4 @@ Third Party Libraries and Resources
  * [Advanced Tiled Loader](https://github.com/Kadoba/Advanced-Tiled-Loader "Advanced Tiled Loader")
  * [LÖVE](http://www.love2d.org "LÖVE")
  * [cgMusic](http://codeminion.com/blogs/maciek/2008/05/cgmusic-computers-create-music/ "cgmusic")
- * [Quale Art Character Sprites](http://quale-art.blogspot.ca/ "Quale")
- 
+ * [Adventure Mini-figs](http://quale-art.blogspot.ca/p/addventure-mini-figs.html "Adventure Mini-figs")
